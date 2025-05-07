@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: OAuth2-Application
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: Ov23lipcr6ck1EKthJMN
+            clientSecret: ba13c6417a7fca526910eb334725322ee4652172
+            scope: user:email
+          google:
+            clientId: 812042630226-9ogj4pkcmh7l7lsjbmvu7cp9b583ki7t.apps.googleusercontent.com
+            clientSecret: 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
+            scope: profile, email
+
