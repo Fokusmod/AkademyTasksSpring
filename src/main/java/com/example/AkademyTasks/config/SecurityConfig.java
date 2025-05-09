@@ -1,6 +1,5 @@
 package com.example.AkademyTasks.config;
 
-import com.example.AkademyTasks.handler.AuthErrorHandler;
 import com.example.AkademyTasks.handler.LogoutHandler;
 import com.example.AkademyTasks.handler.OAuth2DeniedHandler;
 import com.example.AkademyTasks.service.UserService;
@@ -20,14 +19,12 @@ public class SecurityConfig {
 
     private final OAuth2DeniedHandler auth2DeniedHandler;
 
-    private final AuthErrorHandler authErrorHandler;
 
 
-    public SecurityConfig(UserService userService, LogoutHandler logoutHandler, OAuth2DeniedHandler auth2DeniedHandler, AuthErrorHandler authErrorHandler) {
+    public SecurityConfig(UserService userService, LogoutHandler logoutHandler, OAuth2DeniedHandler auth2DeniedHandler) {
         this.userService = userService;
         this.logoutHandler = logoutHandler;
         this.auth2DeniedHandler = auth2DeniedHandler;
-        this.authErrorHandler = authErrorHandler;
     }
 
     @Bean
@@ -40,8 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/home/another").hasAnyAuthority("ANOTHER")
                         .anyRequest().authenticated())
                 .exceptionHandling(exceptionHandler-> exceptionHandler
-                        .accessDeniedHandler(auth2DeniedHandler)
-                        .authenticationEntryPoint(authErrorHandler))
+                        .accessDeniedHandler(auth2DeniedHandler))
                 .oauth2Login(oauth2 -> oauth2
                         .defaultSuccessUrl("/home", true)
                         .userInfoEndpoint(service-> service.userService(userService)))
