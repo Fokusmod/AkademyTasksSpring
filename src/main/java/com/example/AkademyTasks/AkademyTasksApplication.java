@@ -6,8 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AkademyTasksApplication {
 
-	public static void main(String[] args) {
+
+    public static void main(String[] args) {
 		SpringApplication.run(AkademyTasksApplication.class, args);
+
 	}
+
+
 
 }
