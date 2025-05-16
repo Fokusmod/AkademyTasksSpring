@@ -1,13 +1,13 @@
-package com.example.AkademyTasks;
+package com.example.Orders;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AkademyTasksApplication {
+public class OrdersApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AkademyTasksApplication.class, args);
+        SpringApplication.run(OrdersApplication.class, args);
     }
 
 }
