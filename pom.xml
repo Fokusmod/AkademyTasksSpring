@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>AkademyTasks</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>AkademyTasks</name>
 	<description>Spring Boot</description>
 	<url/>
@@ -20,6 +21,12 @@
 	<developers>
 		<developer/>
 	</developers>
+	<modules>
+		<module>Orders</module>
+		<module>Payment</module>
+		<module>Shipping</module>
+		<module>Notifications</module>
+	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
