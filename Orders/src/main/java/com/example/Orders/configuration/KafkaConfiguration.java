@@ -1,6 +1,7 @@
 package com.example.Orders.configuration;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -19,6 +20,20 @@ public class KafkaConfiguration {
 
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServer;
+
+    @Value("${spring.kafka.topic.name}")
+    private String topicName;
+
+    @Value("${spring.kafka.topic.partitions}")
+    private int partitions;
+
+    @Value("${spring.kafka.consumer.concurrency}")
+    private int concurrency;
+
+    @Bean
+    public NewTopic createTopic() {
+        return new NewTopic(topicName, partitions, (short) partitions);
+    }
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
@@ -44,7 +59,7 @@ public class KafkaConfiguration {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-        factory.setConcurrency(3);
+        factory.setConcurrency(concurrency);
         return factory;
     }
 

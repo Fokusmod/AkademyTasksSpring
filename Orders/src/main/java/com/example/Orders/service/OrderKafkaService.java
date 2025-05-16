@@ -22,7 +22,7 @@ public class OrderKafkaService {
     //Имитация получения миллиона запросов
     public void getNewOrder(String orderInfo) {
         System.out.println("Получен новый заказ " + orderInfo);
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 1000; i++) {
             sendOrderInfoIntoKafka(orderInfo);
         }
     }

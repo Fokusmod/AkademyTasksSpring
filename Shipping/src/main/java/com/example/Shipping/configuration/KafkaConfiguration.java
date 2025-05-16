@@ -20,6 +20,15 @@ public class KafkaConfiguration {
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServer;
 
+    @Value("${spring.kafka.topic.name}")
+    private String topicName;
+
+    @Value("${spring.kafka.topic.partitions}")
+    private int partitions;
+
+    @Value("${spring.kafka.consumer.concurrency}")
+    private int concurrency;
+
     @Bean
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
@@ -44,7 +53,7 @@ public class KafkaConfiguration {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-        factory.setConcurrency(3);
+        factory.setConcurrency(concurrency);
         return factory;
     }
 

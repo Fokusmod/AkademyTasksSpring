@@ -16,7 +16,7 @@ public class ShippingKafkaService {
     //Получает информацию о заказах, которые были оплачены, из темы "payed_orders". Осуществляет процесс упаковки
     // и отправки товара. Отправляет информацию об успешной отгрузке в тему Kafka "sent_orders".
 
-    @KafkaListener(topics = "payed_orders", groupId = "orderGroup")
+    @KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "orderGroup", concurrency = "${spring.kafka.consumer.concurrency}")
     public void listenPayedOrdersTopic(String message) {
         System.out.println(message);
         System.out.println("Упаковка и отправка товара.");

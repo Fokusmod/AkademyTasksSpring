@@ -26,9 +26,8 @@ public class PaymentKafkaService {
 
     //Получает информацию о новых заказах из темы "new_orders". Обрабатывает оплату заказа. Отправляет информацию об
     // успешной оплате в тему Kafka "payed_orders".
-    @KafkaListener(topics = "new_orders", groupId = "orderGroup")
+    @KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "orderGroup", concurrency = "${spring.kafka.consumer.concurrency}")
     public void listenNewOrderInfo(String orderInfo) throws IllegalAccessException {
-
         //Эмуляция ошибок. приводит в повторным попыткам обработать запрос:
         //[Consumer clientId=consumer-orderGroup-1, groupId=orderGroup] Seeking to offset 11 for partition new_orders-0
         //2025-05-16T16:18:12.860+03:00  INFO 33244 --- [Payment] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer
