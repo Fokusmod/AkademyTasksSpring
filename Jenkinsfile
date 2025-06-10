@@ -3,8 +3,10 @@
         stages {
             stage('Build') {
                 steps {
-                    sh 'mvn spring-boot:run'
+                    git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
+                    withMaven {
+                        sh "mvn clean verify"
+                        }
+                    }
                 }
             }
-        }
-    }
